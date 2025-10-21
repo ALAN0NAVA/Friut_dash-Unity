@@ -18,11 +18,7 @@ public class GameManager : MonoBehaviour
     public Button restartButton;
     private float spawnRate = 1.0f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        gameActive = false;
-    }
+//function that starts the game
     public void StartGame(float difficulty)
     {
         TitleText.gameObject.SetActive(false);
@@ -36,25 +32,22 @@ public class GameManager : MonoBehaviour
         UpdateScore(0);
         spawnRate /= difficulty;
     }
-        // Function that restarts the game
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-        // Function that stops the game
+// Function that restarts the game
+    public void RestartGame(){ SceneManager.LoadScene(SceneManager.GetActiveScene().name);}
+// Function that stops the game
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
         gameActive = false;
         restartButton.gameObject.SetActive(true);
     }
-        // Funtion that add the score and put it on the screen
+// Function that add the score and put it on the screen
     public void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
     }
-        // Co-rutin that spawn objects per time
+// Co-rutin that spawn objects per time
     IEnumerator SpawnTarget() {
         while (gameActive)
         {

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.UIElements;
 
 public class Target : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Target : MonoBehaviour
     private float maxtorque = 5;
     private float xRange = 4;
     private float ySpawnPos = -1;
-    public int pointValue;
+    public int pointValue = 100;
     public ParticleSystem explosionParticle;
     private GameManager gameManager;
 
@@ -36,28 +37,7 @@ public class Target : MonoBehaviour
                 gameManager.GameOver();
             }
         }
-        
-        
     }
-    private void OnMouseDown()
-    {
-        if (gameManager.gameActive)
-        {
-            Destroy(gameObject);
-            gameManager.UpdateScore(pointValue);
-            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
-            if (gameObject.CompareTag("Bad"))
-            {
-                gameManager.GameOver();
-            }
-        }
-        
-    }
-    public void OnTriggerEnter(Collider other)
-    {
-        
-    }
-    
     Vector3 RandomForce (){
         return Vector3.up * Random.Range(minSpeed, maxSpeed);
     }
